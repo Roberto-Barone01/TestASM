@@ -45,41 +45,42 @@ public class GreatPrinter extends ClassVisitor {
 //		System.out.println("---------------------END: visitNestHost-------------------");
 //	}
 //
-//	public void visitOuterClass(final String owner, final String name, final String descriptor) {
-//		System.out.println("----------------START: visitOuterClass-----------------");
-//		System.out.println("owner is " + owner);
-//		System.out.println("name is " + name);
-//		System.out.println("descriptor is " + descriptor);
-//		System.out.println("---------------------END: visitOuterClass-------------------");
-//	}
+	public void visitOuterClass(final String owner, final String name, final String descriptor) {
+		System.out.println("----------------START: visitOuterClass-----------------");
+		System.out.println("owner is " + owner);
+		System.out.println("name is " + name);
+		System.out.println("descriptor is " + descriptor);
+		System.out.println("---------------------END: visitOuterClass-------------------");
+	}
 //
-//	public void visitInnerClass(final String name, final String outerName, final String innerName, final int access) {
-//		System.out.println("----------------START: visitInnerClass-----------------");
-//		System.out.println("name is " + name);
-//		System.out.println("outername is " + outerName);
-//		System.out.println("innerName is " + innerName);
-//		System.out.println("access is " + access);
-//		System.out.println("----------------END: visitInnerClass-----------------");
-//	}
+	public void visitInnerClass(final String name, final String outerName, final String innerName, final int access) {
+		System.out.println("----------------START: visitInnerClass-----------------");
+		System.out.println("name is " + name);
+		System.out.println("outername is " + outerName);
+		System.out.println("innerName is " + innerName);
+		System.out.println("access is " + access);
+		System.out.println("----------------END: visitInnerClass-----------------");
+	}
 //	
-//	public FieldVisitor visitField(final int access, final String name, final String descriptor, final String signature,
-//			final Object value) {
-//		System.out.println("----------------START: visitField-----------------");
-//		System.out.println("access is " + access);
-//		System.out.println("name is " + name);
-//		System.out.println("signature is " + signature);
-//		System.out.println("----------------END: visitField-----------------");
-//		return null;
-//	}
+	public FieldVisitor visitField(final int access, final String name, final String descriptor, final String signature,
+			final Object value) {
+		System.out.println("----------------START: visitField-----------------");
+		System.out.println("access is " + access);
+		System.out.println("name is " + name);
+		System.out.println("signature is " + signature);
+		System.out.println("----------------END: visitField-----------------");
+		return null;
+	}
 	
 	public MethodVisitor visitMethod(final int access, final String name, final String descriptor,
 		final String signature, final String[] exceptions) {
+		if(name.equalsIgnoreCase("<init>")) return null;
+		//if(name.length()< 7 || name.substring(0, 7).equals("lambda$") == false) return null;
 		System.out.println("----------------START: visitMethod-----------------");
 		System.out.println("access is " + access);
 		System.out.println("name is " + name);
 		System.out.println("descriptor is " + descriptor);
 		if(signature != null) System.out.println("sinature is " + signature);
-		
 		System.out.println("----------------END: visitMethod-----------------");
 		return new GreatPrinterMethodVisit(name);
 	}
