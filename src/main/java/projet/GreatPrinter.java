@@ -41,15 +41,22 @@ public class GreatPrinter extends ClassVisitor {
 		source = name;
 	}
 //
-//	public void visitSource(final String source, final String debug) {
-//		System.out.println("----------------START: visitSource-----------------");
-//		if (source != null)
-//			System.out.println("source is " + source);
-//		if (debug != null)
-//			System.out.println("debug is " + debug);
-//		System.out.println("---------------------END: VisitSource-------------------");
-//	}
+	public void visitSource(final String source, final String debug) {
+		System.out.println("----------------START: visitSource-----------------");
+		if (source != null)
+			System.out.println("source is " + source);
+		if (debug != null)
+			System.out.println("debug is " + debug);
+		System.out.println("---------------------END: VisitSource-------------------");
+	}
 //
+	public void visitNestMember(final String nestMember) {
+		System.out.println("----------NEST MEMBER--------------");
+		System.out.println(nestMember);
+		System.out.println("---------- END NEST MEMBER-------------");
+	}
+	
+	
 	public void visitNestHost(final String nestHost) {
 		System.out.println("----------------START: visitNestHost-----------------");
 		if (nestHost != null)
@@ -104,7 +111,7 @@ public class GreatPrinter extends ClassVisitor {
 		}
 		
 
-		return new GreatPrinterMethodVisit(source,name+""+descriptor,messageMethod,lambda);
+		return new GreatPrinterMethodVisit(source,name+""+descriptor,messageMethod,lambda,this);
 	}
 	
 	@Override
@@ -120,7 +127,4 @@ public class GreatPrinter extends ClassVisitor {
 		return lambda;
 	}
 	
-	
-	
-
 }
